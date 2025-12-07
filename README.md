@@ -1,56 +1,52 @@
-# HR Workflow Designer
+# HR Workflow Automation
 
-A visual workflow designer for HR processes, built with Next.js and React Flow. This tool allows users to create, edit, and simulate HR workflows using a drag-and-drop interface.
+## Description
 
-## Features
+This project is a Next.js application designed for building and simulating HR workflow automations. The architecture is modular and component-driven, with the following structure:
 
-- **Visual Workflow Editor:** Drag and drop nodes to design HR workflows.
-- **Node Types:**
-  - **Start Node:** Entry point of the workflow.
-  - **Task Node:** Manual task with assignee and description.
-  - **Approval Node:** Approval step with approver role and auto-approve settings.
-  - **Automated Node:** Automated action (integration, script, etc.).
-  - **End Node:** Marks the end of the workflow.
-- **Sidebar:** Palette of node types for easy workflow construction.
-- **Node Form Panel:** Edit properties of selected nodes.
-- **Simulation Panel:** Simulate the workflow to see the sequence of steps and detect unreachable nodes.
-- **Modern UI:** Clean, responsive design using CSS and React Flow styles.
+- **Frontend (Next.js, React, TypeScript):**
+   - `src/components/`: Contains reusable UI components, including workflow nodes (Start, End, Task, Approval, Automated) and panels for user interaction.
+   - `src/app/`: Main application entry, global styles, and layout.
+   - `src/hooks/`: Custom React hooks for managing workflow state and logic.
+   - `src/utils/`: Utility functions for serialization and type definitions.
+- **API Routes:**
+   - `pages/api/automations.ts`: Handles automation-related backend logic.
+   - `pages/api/simulate.ts`: Handles workflow simulation requests.
+- **Styling:**
+   - Uses CSS modules and global styles for consistent theming.
 
-## Tech Stack
-
-- **Frontend:** React, Next.js (App Router), TypeScript, React Flow
-- **Backend:** Next.js API routes for workflow simulation
-
-## Getting Started
+## How to Run
 
 1. **Install dependencies:**
-   ```bash
-   npm install
-   ```
+    ```bash
+    npm install
+    ```
+2. **Start the development server:**
+    ```bash
+    npm run dev
+    ```
+    The app will be available at [http://localhost:3000](http://localhost:3000).
 
-2. **Run the development server:**
-   ```bash
-   npm run dev
-   ```
-   Open [http://localhost:3000](http://localhost:3000) in your browser.
+## Design Decisions
 
-## Project Structure
+- **Component-based Node System:** Each workflow node (Start, End, Task, Approval, Automated) is a separate React component, making it easy to extend and maintain.
+- **TypeScript:** Ensures type safety and better developer experience.
+- **Next.js API Routes:** Used for backend logic, keeping the project full-stack within a single codebase.
+- **Custom Hooks:** Encapsulate workflow logic and state management for reusability.
+- **Separation of Concerns:** UI, logic, and data serialization are separated for clarity and scalability.
 
-- `src/app/` — Main app entry, layout, and page components
-- `src/components/` — UI components (Sidebar, Canvas, NodeFormPanel, SandboxPanel, node types)
-- `src/hooks/` — Custom React hooks for workflow state management
-- `src/utils/` — Utility functions (serialization, types)
-- `pages/api/` — API routes for workflow simulation and automations
-- `styles/` — Global and component styles
+## What Was Completed
 
-## Simulation API
+- Core workflow builder UI with draggable nodes and connections.
+- Node types for Start, End, Task, Approval, and Automated steps.
+- Panels for node configuration and workflow simulation.
+- API endpoints for automation and simulation logic.
+- Basic styling and layout.
 
-- **Endpoint:** `/api/simulate`
-- **Description:** Accepts a workflow graph (nodes and edges) and returns the sequence of execution steps using a breadth-first traversal. Warns if any nodes are unreachable.
+## What Could Be Added with More Time
 
-## Usage
-
-1. Use the sidebar to drag nodes onto the canvas.
-2. Connect nodes to define the workflow.
-3. Click a node to edit its properties in the form panel.
-4. Use the simulation panel to test the workflow logic.
+- Persistent storage (e.g., database integration) for saving and loading workflows.
+- Advanced simulation features (e.g., step-by-step execution, error handling).
+- More node types (e.g., conditional branches, parallel tasks).
+- Enhanced UI/UX (animations, better error messages, mobile responsiveness).
+- Documentation for API endpoints.
